@@ -24,8 +24,7 @@ var CONTACT = '추가 문의는 조민경 (mistralwindel@gmail.com).';
 function buildForm() {
   var form = FormApp.create('동아시아학제연구회 웹사이트 요청')
     .setDescription('웹사이트에 올릴 내용을 받는 곳입니다. ' + CONTACT)
-    .setConfirmationMessage('받았습니다. 확인하고 올리겠습니다.\n\n' + CONTACT)
-    .setProgressBar(true);
+    .setConfirmationMessage('받았습니다. 확인하고 올리겠습니다.\n\n' + CONTACT);
 
   // The person on duty will need to ask follow-ups -- which photo goes with
   // which caption, what a date refers to.
@@ -67,14 +66,22 @@ function buildForm() {
   form.addParagraphTextItem()
     .setTitle('영어 번역 (제목 · 요약 · 본문)')
     .setHelpText('없으면 한국어가 그대로 나갑니다.');
-  addUpload(form, todo, '함께 올릴 사진', '', 10, true);
+  addUpload(form, todo, {
+    title: '함께 올릴 사진',
+    help: '사람이 나온 사진은 동의를 받은 것만 올려주세요.',
+    max: 10, imagesOnly: true
+  });
 
   // ---- Section 3 · 사진 -------------------------------------------------
   var pbPhoto = form.addPageBreakItem()
     .setTitle('사진')
     .setHelpText('갤러리는 날짜별로 묶입니다.');
 
-  addUpload(form, todo, '사진', '휴대폰 사진은 원본 그대로 올려주세요.', 20, true);
+  addUpload(form, todo, {
+    title: '사진',
+    help: '휴대폰 사진은 원본 그대로 올려주세요.',
+    max: 20, imagesOnly: true, required: true
+  });
   form.addDateItem()
     .setTitle('찍은 날짜')
     .setRequired(true);
@@ -112,7 +119,9 @@ function buildForm() {
     .setRequired(true);
   form.addParagraphTextItem()
     .setTitle('영어 번역');
-  addUpload(form, todo, '새 사진', '정사각형으로 잘라 실립니다.', 1, true);
+  addUpload(form, todo, {
+    title: '새 사진', help: '정사각형으로 잘라 실립니다.', max: 1, imagesOnly: true
+  });
 
   // ---- Section 5 · 발제 -------------------------------------------------
   var pbSeminar = form.addPageBreakItem()
@@ -142,7 +151,7 @@ function buildForm() {
   form.addParagraphTextItem()
     .setTitle('무슨 내용인가요')
     .setRequired(true);
-  addUpload(form, todo, '파일', '무엇이든 괜찮습니다.', 10, false);
+  addUpload(form, todo, { title: '파일', help: '무엇이든 괜찮습니다.', max: 10 });
   form.addListItem()
     .setTitle('어느 페이지인가요')
     .setChoiceValues(['홈', '소개', '사람', '발제', '소식', '갤러리',
@@ -169,11 +178,20 @@ function buildForm() {
   var sheet = SpreadsheetApp.create('동아시아학제연구회 웹사이트 요청 (응답)');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId());
 
+  var published = false;
+  if (typeof form.setPublished === 'function') {
+    form.setPublished(true);
+    published = true;
+  }
+
   Logger.log('폼 편집: %s', form.getEditUrl());
   Logger.log('폼 링크: %s', form.getPublishedUrl());
   Logger.log('응답 시트: %s', sheet.getUrl());
   Logger.log('');
   Logger.log('손으로 확인할 것:');
+  if (!published) {
+    Logger.log('  · 폼 편집기에서 "게시" — 누르기 전에는 링크가 열리지 않습니다');
+  }
   Logger.log('  · 소식 · 사진 · 프로필 · 발제 네 섹션 아래');
   Logger.log('    "다음 섹션으로 진행" 이 "양식 제출" 인지');
   Logger.log('  · 응답 시트에 처리 / 메모 열 두 개 추가');
@@ -193,18 +211,25 @@ function buildForm() {
  * section header in the right position saying what belongs there, so the
  * question can be added in place instead of hunted for.
  */
-function addUpload(form, todo, title, help, maxFiles, imagesOnly) {
-  var kinds = imagesOnly ? '이미지' : '모든 형식';
+function addUpload(form, todo, spec) {
+  var shape = (spec.imagesOnly ? '이미지' : '모든 형식') +
+              ', 최대 ' + spec.max + '개' +
+              (spec.required ? ', 필수' : '');
+
   if (typeof form.addFileUploadItem === 'function') {
-    var item = form.addFileUploadItem().setTitle(title).setHelpText(help);
-    if (typeof item.setMaxNumberOfFiles === 'function') item.setMaxNumberOfFiles(maxFiles);
-    if (imagesOnly && typeof item.setAllowedFileTypes === 'function') {
+    var item = form.addFileUploadItem()
+      .setTitle(spec.title)
+      .setHelpText(spec.help || '')
+      .setRequired(!!spec.required);
+    if (typeof item.setMaxNumberOfFiles === 'function') item.setMaxNumberOfFiles(spec.max);
+    if (spec.imagesOnly && typeof item.setAllowedFileTypes === 'function') {
       item.setAllowedFileTypes([FormApp.FileType.IMAGE]);
     }
     return;
   }
+
   form.addSectionHeaderItem()
-    .setTitle('⚠︎ 담당자용 — 여기에 「' + title + '」 파일 업로드 질문을 넣으세요')
-    .setHelpText(kinds + ', 최대 ' + maxFiles + '개. 넣은 다음 이 안내는 삭제.');
-  todo.push(title + ' (' + kinds + ', 최대 ' + maxFiles + '개)');
+    .setTitle('⚠︎ 담당자용 — 여기에 「' + spec.title + '」 파일 업로드 질문을 넣으세요')
+    .setHelpText(shape + '. 넣은 다음 이 안내는 삭제.');
+  todo.push(spec.title + ' (' + shape + ')');
 }

@@ -54,6 +54,9 @@ Add the question there, then delete the header.
 - Note that **file upload questions require the responder to be signed in to a
   Google account**, and the files land in the form owner's Drive. Both are
   fine here — everyone uploaded a photo to the original survey the same way.
+- A form now has to be **게시**d before its link opens. The script does it if
+  the runtime offers `setPublished`; if the log says otherwise, press it in the
+  editor before sending the link anywhere.
 
 ### Section 1 · 시작
 
@@ -74,7 +77,7 @@ Options, each jumping to its own section: 소식 / 사진 / 내 프로필 수정
 | 본문 | 장문형 | yes | 문단은 빈 줄로 나눠주세요. | body |
 | 홈에 실릴 한 줄 요약 | 단답형 | no | 비워두면 본문 첫 문장을 씁니다. | `summary` |
 | 영어 번역 (제목 · 요약 · 본문) | 장문형 | no | 없으면 한국어가 그대로 나갑니다. | `title_en`, `summary_en`, `content_en` |
-| 함께 올릴 사진 | 파일 업로드 · 이미지 · 최대 10개 | no | | 갤러리 |
+| 함께 올릴 사진 | 파일 업로드 · 이미지 · 최대 10개 | no | 사람이 나온 사진은 동의를 받은 것만 올려주세요. | 갤러리 |
 
 ### Section 3 · 사진 → `_data/gallery.yml` + `assets/images/gallery/`
 
@@ -88,7 +91,9 @@ Options, each jumping to its own section: 소식 / 사진 / 내 프로필 수정
 | 사진에 나온 분들께 웹사이트 공개 동의를 받았습니다 | 체크박스 · 필수 | yes | | — |
 
 The consent box is a one-option checkbox marked required, so the form will not
-submit without it. That is the gallery's existing rule made mechanical.
+submit without it. That is the gallery's existing rule made mechanical. The
+소식 branch can carry photographs too but cannot enforce it there — a news post
+usually has none — so the rule is stated on its upload question instead.
 
 ### Section 4 · 내 프로필 수정 → `_data/people.yml`
 
