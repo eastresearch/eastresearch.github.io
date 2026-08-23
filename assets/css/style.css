@@ -298,8 +298,25 @@ html[data-lang="en"] .i18n-ko { display: none; }
   display: flex;
   align-items: center;
   gap: 1.1rem;
-  margin-top: 3.4rem;
+  margin-top: 3.2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
 }
+.byline-lines {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: baseline;
+  gap: 0.5rem 0.8rem;
+  margin: 0;
+}
+.byline-lines dt {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+.byline-lines dd { margin: 0; }
+.byline-lines a { color: var(--navy); word-break: break-all; }
 
 .byline-photo {
   width: 124px;
@@ -339,28 +356,7 @@ html[data-lang="en"] .i18n-ko { display: none; }
 
 .byline-name {
   font-family: var(--font-serif);
-  color: var(--navy);
   font-size: 1.02rem;
-  margin: 0;
-}
-.byline-role {
-  margin: 0;
-  font-size: 0.84rem;
-  color: var(--text-muted);
-}
-
-/* the group's address, closing the introduction rather than the signature */
-.group-contact {
-  margin: 0 0 2.4rem;
-  font-size: 0.95rem;
-}
-.group-contact span:first-child {
-  color: var(--text-muted);
-  margin-right: 0.6rem;
-}
-.group-contact a {
-  color: var(--navy);
-  word-break: break-all;
 }
 
 /* margin links: programs and the foundation, one short note each */

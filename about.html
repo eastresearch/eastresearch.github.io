@@ -18,37 +18,37 @@ permalink: /about/
   </div>
 
   {%- comment -%}
-    The group's address, not the leader's: kept out of the signature block,
-    where sitting under his name and role read as his personal contact.
-  {%- endcomment -%}
-  <p class="group-contact">
-    <span class="i18n-ko">대표 연락처</span><span class="i18n-en">Contact</span>
-    <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>
-  </p>
+    The introduction closes with who signs it and where to write to the group.
+    Both sit under one rule: either alone was too little to put a line over,
+    and the address is labelled 대표 연락처 so that standing beside his name it
+    still reads as the group's rather than his own.
 
-  {%- comment -%}
-    The introduction is signed. site.leader_photo may put a face beside the
-    name; no fallback to the people-page portrait, since a signature carrying
-    a photo is the leader's choice to make and silence has to mean no.
+    site.leader_photo may put a face beside them; no fallback to the
+    people-page portrait, since a signature carrying a photo is the leader's
+    choice to make and silence has to mean no.
   {%- endcomment -%}
   {% assign leader = site.data.people | where: "name", site.leader_name | first %}
   {% assign leader_photo = site.leader_photo %}
+  {% assign leader_anchor = leader.name_en | default: site.leader_name | slugify %}
   <div class="byline">
-    <div>
-      <p class="byline-name">
-        {%- comment -%} links through to his entry on the people page {%- endcomment -%}
-        <a href="{{ '/people/' | relative_url }}#{{ leader.name_en | default: site.leader_name | slugify }}">
+    {%- comment -%}
+      A two-column grid sized to its own labels, so the two values line up in
+      either language -- 학회장 and 대표 연락처 are not the widths of Group
+      Leader and Contact, and a fixed column would only ever suit one of them.
+    {%- endcomment -%}
+    <dl class="byline-lines">
+      <dt><span class="i18n-ko">학회장</span><span class="i18n-en">Group Leader</span></dt>
+      <dd>
+        <a class="byline-name" href="{{ '/people/' | relative_url }}#{{ leader_anchor }}">
           <span class="i18n-ko">{{ site.leader_name }}</span>
           <span class="i18n-en">{{ leader.name_en | default: site.leader_name }}</span>
         </a>
-      </p>
-      <p class="byline-role">
-        <span class="i18n-ko">학회장</span>
-        <span class="i18n-en">Group Leader</span>
-      </p>
-    </div>
+      </dd>
+      <dt><span class="i18n-ko">대표 연락처</span><span class="i18n-en">Contact</span></dt>
+      <dd><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></dd>
+    </dl>
     {% if leader_photo %}
-      <a href="{{ '/people/' | relative_url }}#{{ leader.name_en | default: site.leader_name | slugify }}">
+      <a href="{{ '/people/' | relative_url }}#{{ leader_anchor }}">
         <img class="byline-photo" src="{{ '/assets/images/people/' | append: leader_photo | relative_url }}"
              alt="{{ site.leader_name }}">
       </a>
