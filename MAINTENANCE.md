@@ -46,6 +46,10 @@ after it is optional.
 Three answers and a submit button is a complete submission. Any file type is
 accepted — a PDF or a 한글 file is a submission too.
 
+Help text throughout is one short clause or nothing: an example where an
+example helps, silence where the question is already clear. Forms that explain
+themselves at length read as written by someone who is not in the group.
+
 The consent checkbox is *not* required, which is a deliberate reversal: most
 submissions contain no photograph, and taxing all of them to catch the few is
 the wrong trade. It is worded as a plain statement so the photographs that do
@@ -61,18 +65,18 @@ All optional; the body already arrived in section 1.
 
 | Question | Type | Help text | Feeds |
 | --- | --- | --- | --- |
-| 제목 | 단답형 | 한 줄로. 예: 은교, 찬희, 나현, 채연의 논문이 DH2026에 채택되었습니다! | `title` |
-| 날짜 | 날짜 | 소식이 있었던 날입니다. | filename + `date` |
-| 홈에 한 줄로 뜰 요약 | 단답형 | 비워두시면 본문 첫 문장을 씁니다. | `summary` |
-| 영어로도 | 장문형 | 없으면 한국어가 두 언어 모두에 그대로 나옵니다. 오류가 아닙니다. | `title_en`, `content_en` |
+| 제목 | 단답형 | 예: 은교, 찬희, 나현, 채연의 논문이 DH2026에 채택되었습니다! | `title` |
+| 날짜 | 날짜 | 소식이 있었던 날. | filename + `date` |
+| 홈에 한 줄로 뜰 요약 | 단답형 | 비우면 본문 첫 문장을 씁니다. | `summary` |
+| 영어로도 | 장문형 | 없으면 한국어가 그대로 나갑니다. | `title_en`, `content_en` |
 
 ### Section 3 · 사진 → `_data/gallery.yml` + `assets/images/gallery/`
 
 | Question | Type | Help text | Feeds |
 | --- | --- | --- | --- |
-| 언제 찍은 사진인가요 | 날짜 | 갤러리는 날짜별로 묶여 있습니다. | `date` |
+| 언제 찍은 사진인가요 | 날짜 | | `date` |
 | 무슨 자리였나요 | 단답형 | 예: DH2026, 대전 모임 | `event` |
-| 사진마다 한 줄 설명 | 장문형 | 올린 순서대로 한 줄에 하나씩. 예: 마이크를 잡은 채연 | `caption` |
+| 사진마다 한 줄 설명 | 장문형 | 올린 순서대로 한 줄에 하나. 예: 마이크를 잡은 채연 | `caption` |
 | 영어로도 | 장문형 | | `caption_en` |
 
 ### Section 4 · 내 프로필 수정 → `_data/people.yml`
