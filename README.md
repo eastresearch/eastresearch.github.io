@@ -258,6 +258,12 @@ so the spacing is sized for the longer of the two.
 The map is hidden below 720px and from assistive technology; the list
 underneath is the real content.
 
+## Maintaining it with the group
+
+`MAINTENANCE.md` carries the three-tier split — a Google Form for the members,
+github.com in a browser for whoever is on duty, a terminal only for the survey
+import — and the full spec of the intake form, question by question.
+
 ## Deployment
 
 Lives at [eastresearch.github.io](https://eastresearch.github.io/)

@@ -64,6 +64,7 @@ plugins:
 
 exclude:
   - README.md
+  - MAINTENANCE.md
   - Gemfile
   - Gemfile.lock
   - tools # importer scripts; they were being published alongside the site
