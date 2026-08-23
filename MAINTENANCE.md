@@ -20,9 +20,16 @@ came from), so the form is the one interface they need no explanation for. It
 is Korean, works on a phone, and takes file uploads straight into Drive, which
 is where `fetch_photos.py` already knows how to look.
 
-Build it at [forms.google.com](https://forms.google.com) from the spec below.
-Every question is worded to collect exactly one front-matter field, so the
-person on duty copies rather than interprets.
+You do not have to click it together by hand. `tools/create_form.gs` builds
+the whole thing in one run — paste it into a new project at
+[script.google.com](https://script.google.com), Run > `buildForm`, authorise
+it, and the log prints the form's link and its response spreadsheet. Keeping
+the form in a file means it can be rebuilt or revised later instead of being
+a thing that exists only in someone's Drive.
+
+The spec below is what that script produces, and what to check against if you
+edit either. Every question is worded to collect exactly one front-matter
+field, so the person on duty copies rather than interprets.
 
 **Form settings**
 
