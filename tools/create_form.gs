@@ -23,7 +23,7 @@ var CONTACT = '추가 문의는 조민경 (mistralwindel@gmail.com).';
 
 function buildForm() {
   var form = FormApp.create('동아시아학제연구회 웹사이트 요청')
-    .setDescription('웹사이트에 올릴 것을 받는 곳입니다. ' + CONTACT)
+    .setDescription('웹사이트에 올릴 내용을 받는 곳입니다. ' + CONTACT)
     .setConfirmationMessage('받았습니다. 확인하고 올리겠습니다.\n\n' + CONTACT)
     .setProgressBar(true);
 
@@ -55,18 +55,17 @@ function buildForm() {
     .setHelpText('예: 은교, 찬희, 나현, 채연의 논문이 DH2026에 채택되었습니다!')
     .setRequired(true);
   form.addDateItem()
-    .setTitle('날짜')
-    .setHelpText('소식이 있었던 날.')
+    .setTitle('소식이 있었던 날짜')
     .setRequired(true);
   form.addParagraphTextItem()
     .setTitle('본문')
-    .setHelpText('문단은 빈 줄로 나눠주세요. 목록은 줄 앞에 "- ".')
+    .setHelpText('문단은 빈 줄로 나눠주세요.')
     .setRequired(true);
   form.addTextItem()
-    .setTitle('홈에 한 줄로 뜰 요약')
-    .setHelpText('비우면 본문 첫 문장을 씁니다.');
+    .setTitle('홈에 실릴 한 줄 요약')
+    .setHelpText('비워두면 본문 첫 문장을 씁니다.');
   form.addParagraphTextItem()
-    .setTitle('영어로도 (제목 · 요약 · 본문)')
+    .setTitle('영어 번역 (제목 · 요약 · 본문)')
     .setHelpText('없으면 한국어가 그대로 나갑니다.');
   addUpload(form, todo, '함께 올릴 사진', '', 10, true);
 
@@ -77,17 +76,17 @@ function buildForm() {
 
   addUpload(form, todo, '사진', '휴대폰 사진은 원본 그대로 올려주세요.', 20, true);
   form.addDateItem()
-    .setTitle('언제 찍은 사진인가요')
+    .setTitle('찍은 날짜')
     .setRequired(true);
   form.addTextItem()
-    .setTitle('무슨 자리였나요')
+    .setTitle('어떤 자리였나요')
     .setHelpText('예: DH2026, 대전 모임')
     .setRequired(true);
   form.addParagraphTextItem()
-    .setTitle('사진마다 한 줄 설명')
-    .setHelpText('올린 순서대로 한 줄에 하나. 예: 마이크를 잡은 채연');
+    .setTitle('사진 설명')
+    .setHelpText('올린 순서대로 한 줄씩. 예: 마이크를 잡은 채연');
   form.addParagraphTextItem()
-    .setTitle('영어로도');
+    .setTitle('영어 설명');
 
   // A one-option checkbox marked required will not let the form submit until
   // it is ticked: the gallery's consent rule, made mechanical. Unlike the
@@ -109,10 +108,10 @@ function buildForm() {
     .setRequired(true);
   form.addParagraphTextItem()
     .setTitle('고친 내용')
-    .setHelpText('항목마다 한 줄로. 예: 소속: 서울대학교 정치외교학부')
+    .setHelpText('예: 소속: 서울대학교 정치외교학부')
     .setRequired(true);
   form.addParagraphTextItem()
-    .setTitle('영어로도');
+    .setTitle('영어 번역');
   addUpload(form, todo, '새 사진', '정사각형으로 잘라 실립니다.', 1, true);
 
   // ---- Section 5 · 발제 -------------------------------------------------
@@ -128,10 +127,10 @@ function buildForm() {
     .setHelpText('예: 동아시아와 기억');
   form.addParagraphTextItem()
     .setTitle('요약')
-    .setHelpText('길이는 자유입니다. 문단은 빈 줄로 나눠주세요.')
+    .setHelpText('문단은 빈 줄로 나눠주세요.')
     .setRequired(true);
   form.addParagraphTextItem()
-    .setTitle('영어로도 (제목 · 요약)');
+    .setTitle('영어 번역 (제목 · 요약)');
 
   // ---- Section 6 · 그 밖의 것 -------------------------------------------
   // The escape hatch. Without it the four categories above are a wall, and
@@ -141,11 +140,11 @@ function buildForm() {
     .setHelpText('형식은 없습니다.');
 
   form.addParagraphTextItem()
-    .setTitle('무슨 이야기인가요')
+    .setTitle('무슨 내용인가요')
     .setRequired(true);
   addUpload(form, todo, '파일', '무엇이든 괜찮습니다.', 10, false);
   form.addListItem()
-    .setTitle('어느 페이지 이야기인가요')
+    .setTitle('어느 페이지인가요')
     .setChoiceValues(['홈', '소개', '사람', '발제', '소식', '갤러리',
                       '해당 없음']);
 
@@ -190,7 +189,7 @@ function buildForm() {
  *
  * Apps Script's Form class can read and edit an existing file upload question
  * but has no addFileUploadItem() to create one, so this feature-detects rather
- * than failing the whole run over five questions. Where it cannot, it leaves a
+ * than failing the whole run over four questions. Where it cannot, it leaves a
  * section header in the right position saying what belongs there, so the
  * question can be added in place instead of hunted for.
  */
@@ -205,7 +204,7 @@ function addUpload(form, todo, title, help, maxFiles, imagesOnly) {
     return;
   }
   form.addSectionHeaderItem()
-    .setTitle('[파일 업로드 질문 자리: ' + title + ']')
-    .setHelpText(kinds + ', 최대 ' + maxFiles + '개. 질문을 만든 뒤 이 안내는 지우세요.');
+    .setTitle('⚠︎ 담당자용 — 여기에 「' + title + '」 파일 업로드 질문을 넣으세요')
+    .setHelpText(kinds + ', 최대 ' + maxFiles + '개. 넣은 다음 이 안내는 삭제.');
   todo.push(title + ' (' + kinds + ', 최대 ' + maxFiles + '개)');
 }

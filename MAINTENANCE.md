@@ -34,12 +34,19 @@ four still has somewhere to go, which is what keeps the categories from being
 a wall.
 
 Help text throughout is one short clause or nothing: an example where an
-example helps, silence where the question already says it.
+example helps, silence where the question already says it. Labels are the
+plain nouns a Korean form uses — 제목, 찍은 날짜, 사진 설명 — not questions
+asked of the reader.
+
+Apps Script cannot create file upload questions (there is no
+`addFileUploadItem`), so the script leaves a section header in each of the
+four places one belongs, addressed to the form's owner and marked 담당자용.
+Add the question there, then delete the header.
 
 **Form settings**
 
 - Title: 동아시아학제연구회 웹사이트 요청
-- Description: 웹사이트에 올릴 것을 받는 곳입니다. 추가 문의는 조민경 (mistralwindel@gmail.com).
+- Description: 웹사이트에 올릴 내용을 받는 곳입니다. 추가 문의는 조민경 (mistralwindel@gmail.com).
 - 응답자 이메일 주소 수집: on — the person on duty will need to ask follow-ups.
 - 응답 > 스프레드시트에 연결: on. Add two columns of your own to the right of
   the responses, `처리` (미처리 / 올림 / 보류) and `메모`.
@@ -63,10 +70,10 @@ Options, each jumping to its own section: 소식 / 사진 / 내 프로필 수정
 | Question | Type | Req. | Help text | Feeds |
 | --- | --- | --- | --- | --- |
 | 제목 | 단답형 | yes | 예: 은교, 찬희, 나현, 채연의 논문이 DH2026에 채택되었습니다! | `title` |
-| 날짜 | 날짜 | yes | 소식이 있었던 날. | filename + `date` |
-| 본문 | 장문형 | yes | 문단은 빈 줄로 나눠주세요. 목록은 줄 앞에 `- `. | body |
-| 홈에 한 줄로 뜰 요약 | 단답형 | no | 비우면 본문 첫 문장을 씁니다. | `summary` |
-| 영어로도 (제목 · 요약 · 본문) | 장문형 | no | 없으면 한국어가 그대로 나갑니다. | `title_en`, `summary_en`, `content_en` |
+| 소식이 있었던 날짜 | 날짜 | yes | | filename + `date` |
+| 본문 | 장문형 | yes | 문단은 빈 줄로 나눠주세요. | body |
+| 홈에 실릴 한 줄 요약 | 단답형 | no | 비워두면 본문 첫 문장을 씁니다. | `summary` |
+| 영어 번역 (제목 · 요약 · 본문) | 장문형 | no | 없으면 한국어가 그대로 나갑니다. | `title_en`, `summary_en`, `content_en` |
 | 함께 올릴 사진 | 파일 업로드 · 이미지 · 최대 10개 | no | | 갤러리 |
 
 ### Section 3 · 사진 → `_data/gallery.yml` + `assets/images/gallery/`
@@ -74,10 +81,10 @@ Options, each jumping to its own section: 소식 / 사진 / 내 프로필 수정
 | Question | Type | Req. | Help text | Feeds |
 | --- | --- | --- | --- | --- |
 | 사진 | 파일 업로드 · 이미지 · 최대 20개 | yes | 휴대폰 사진은 원본 그대로 올려주세요. | the image files |
-| 언제 찍은 사진인가요 | 날짜 | yes | | `date` |
-| 무슨 자리였나요 | 단답형 | yes | 예: DH2026, 대전 모임 | `event` |
-| 사진마다 한 줄 설명 | 장문형 | no | 올린 순서대로 한 줄에 하나. 예: 마이크를 잡은 채연 | `caption` |
-| 영어로도 | 장문형 | no | | `caption_en` |
+| 찍은 날짜 | 날짜 | yes | | `date` |
+| 어떤 자리였나요 | 단답형 | yes | 예: DH2026, 대전 모임 | `event` |
+| 사진 설명 | 장문형 | no | 올린 순서대로 한 줄씩. 예: 마이크를 잡은 채연 | `caption` |
+| 영어 설명 | 장문형 | no | | `caption_en` |
 | 사진에 나온 분들께 웹사이트 공개 동의를 받았습니다 | 체크박스 · 필수 | yes | | — |
 
 The consent box is a one-option checkbox marked required, so the form will not
@@ -88,8 +95,8 @@ submit without it. That is the gallery's existing rule made mechanical.
 | Question | Type | Req. | Help text |
 | --- | --- | --- | --- |
 | 무엇을 고칠까요 | 체크박스 | yes | 소속 / 전공 / 소개글 / 사진 / 이름 로마자 표기 / 링크(LinkedIn 등) / 내리고 싶습니다 |
-| 고친 내용 | 장문형 | yes | 항목마다 한 줄로. 예: 소속: 서울대학교 정치외교학부 |
-| 영어로도 | 장문형 | no | |
+| 고친 내용 | 장문형 | yes | 예: 소속: 서울대학교 정치외교학부 |
+| 영어 번역 | 장문형 | no | |
 | 새 사진 | 파일 업로드 · 이미지 · 1개 | no | 정사각형으로 잘라 실립니다. |
 
 ⚠️ `import_people.py` rewrites `_data/people.yml` wholesale from the survey
@@ -106,8 +113,8 @@ already protects the photos. Until then, treat these as needing the leader.
 | 발제 날짜 | 날짜 | yes | | `date` |
 | 발제자 | 단답형 | yes | | `presenter` |
 | 대주제 | 단답형 | no | 예: 동아시아와 기억 | `cycle` |
-| 요약 | 장문형 | yes | 길이는 자유입니다. 문단은 빈 줄로 나눠주세요. | body |
-| 영어로도 (제목 · 요약) | 장문형 | no | | `title_en`, `content_en` |
+| 요약 | 장문형 | yes | 문단은 빈 줄로 나눠주세요. | body |
+| 영어 번역 (제목 · 요약) | 장문형 | no | | `title_en`, `content_en` |
 
 ### Section 6 · 그 밖의 것
 
@@ -116,9 +123,9 @@ suggestions, and anything the four categories above do not describe.
 
 | Question | Type | Req. | Help text |
 | --- | --- | --- | --- |
-| 무슨 이야기인가요 | 장문형 | yes | |
+| 무슨 내용인가요 | 장문형 | yes | |
 | 파일 | 파일 업로드 · 모든 형식 · 최대 10개 | no | 무엇이든 괜찮습니다. |
-| 어느 페이지 이야기인가요 | 드롭다운 | no | 홈 / 소개 / 사람 / 발제 / 소식 / 갤러리 / 해당 없음 |
+| 어느 페이지인가요 | 드롭다운 | no | 홈 / 소개 / 사람 / 발제 / 소식 / 갤러리 / 해당 없음 |
 
 ## Where the form link goes
 
