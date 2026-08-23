@@ -27,11 +27,12 @@ permalink: /about/
   </p>
 
   {%- comment -%}
-    The introduction is signed, so the signature carries a face. site.leader_photo
-    is a tighter crop of the same portrait; falls back to the people-page one.
+    The introduction is signed. site.leader_photo may put a face beside the
+    name; no fallback to the people-page portrait, since a signature carrying
+    a photo is the leader's choice to make and silence has to mean no.
   {%- endcomment -%}
   {% assign leader = site.data.people | where: "name", site.leader_name | first %}
-  {% assign leader_photo = site.leader_photo | default: site.data.people_photos[site.leader_name] %}
+  {% assign leader_photo = site.leader_photo %}
   <div class="byline">
     <div>
       <p class="byline-name">

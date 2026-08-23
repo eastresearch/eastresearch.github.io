@@ -5,9 +5,8 @@ leader_name: 이용우 # signs the introduction on /about/
 # Group contact. Deliberately the leader's own address rather than the one on
 # his people-page card, which is his university address.
 contact_email: "yiyw0417@gmail.com"
-# Tighter crop of the same photo: his people-page portrait is a wide café
-# scene, which at byline size left him a small figure in it.
-leader_photo: yongwoo-yi-byline.jpg
+# leader_photo (a filename in assets/images/people/) puts a face beside the
+# signature. Left unset at the leader's own request; the signature is a name.
 # Used for the meta description and link-preview text. Kept in step with the
 # group's own introduction on the home page.
 description: >-
