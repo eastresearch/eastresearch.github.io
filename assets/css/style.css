@@ -290,26 +290,15 @@ html[data-lang="en"] .i18n-ko { display: none; }
 .intro { margin: 0 0 3.5rem; }
 .intro p { margin: 0 0 1.15rem; }
 
-/* signed introduction, set apart from the body text by a rule rather than by
-   another heading. The rule is the width of a signature line, not of the
-   column: with no photograph beside it the signature is two short lines, and
-   a rule running the whole way across read as a divider opening a section
-   that then turned out to be empty. */
+/* signed introduction. The rule that used to sit over it was doing the work
+   of separating a 124px portrait from the body text; with the portrait gone
+   it was drawing a line over two short lines of type, and the space alone
+   says the same thing more quietly. */
 .byline {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 1.1rem;
-  margin-top: 2.2rem;
-  padding-top: 1.1rem;
-}
-.byline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3.5rem;
-  border-top: 1px solid var(--rule);
+  margin-top: 3.4rem;
 }
 
 .byline-photo {
