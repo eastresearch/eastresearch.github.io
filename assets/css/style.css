@@ -290,13 +290,25 @@ html[data-lang="en"] .i18n-ko { display: none; }
 .intro { margin: 0 0 3.5rem; }
 .intro p { margin: 0 0 1.15rem; }
 
-/* signed introduction: the leader's photo beside the name, set apart from the
-   body text by a rule rather than by another heading */
+/* signed introduction, set apart from the body text by a rule rather than by
+   another heading. The rule is the width of a signature line, not of the
+   column: with no photograph beside it the signature is two short lines, and
+   a rule running the whole way across read as a divider opening a section
+   that then turned out to be empty. */
 .byline {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1.1rem;
-  padding-top: 1.6rem;
+  margin-top: 2.2rem;
+  padding-top: 1.1rem;
+}
+.byline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.5rem;
   border-top: 1px solid var(--rule);
 }
 
