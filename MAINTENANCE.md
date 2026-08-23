@@ -132,6 +132,33 @@ suggestions, and anything the four categories above do not describe.
 | 파일 | 파일 업로드 · 모든 형식 · 최대 10개 | no | 무엇이든 괜찮습니다. |
 | 어느 페이지인가요 | 드롭다운 | no | 홈 / 소개 / 사람 / 발제 / 소식 / 갤러리 / 해당 없음 |
 
+### Adding the four file upload questions
+
+Apps Script has no `addFileUploadItem`, the one question type it cannot
+create, so the script leaves a 담당자용 section header at each of the four
+places one belongs. In the form editor, for each of them:
+
+1. click the header, then **⊕** in the toolbar that appears beside it
+2. change the new question's type to **파일 업로드**; accept the notice about
+   responders needing to sign in
+3. title it exactly as the header says
+4. **특정 파일 형식만 허용** → 이미지 (leave it off for 파일)
+5. set 최대 파일 수, and raise 최대 파일 크기 to 100MB — the 10MB default
+   turns away a phone photograph
+6. 필수 for 사진 only
+7. delete the header
+
+| Section | Title | Types | Max | Required |
+| --- | --- | --- | --- | --- |
+| 소식 | 함께 올릴 사진 | 이미지 | 10 | no |
+| 사진 | 사진 | 이미지 | 20 | **yes** |
+| 내 프로필 수정 | 새 사진 | 이미지 | 1 | no |
+| 그 밖의 것 | 파일 | any | 10 | no |
+
+Uploads land in a 「…(File responses)」 folder in the form owner's Drive and
+count against their quota. This is the same mechanism the original survey used
+for the profile photographs, which is what `fetch_photos.py` reads.
+
 ## Where the form link goes
 
 A form nobody can find collects nothing. Once the form exists, its link
