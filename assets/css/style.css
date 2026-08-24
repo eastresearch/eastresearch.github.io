@@ -79,15 +79,19 @@ html[data-lang="en"] .i18n-ko { display: none; }
 .hero-img {
   display: block;
   width: 100%;
-  height: 34vh;
-  min-height: 240px;
-  max-height: 360px;
+  /* Held to a narrow range on purpose: the depth is what differs between the
+     front page and the rest, and a wide range made that difference swing with
+     the window height as well as with the page. */
+  height: 30vh;
+  min-height: 270px;
+  max-height: 320px;
   object-fit: cover;
-  /* The band of misty ridges rather than the summit: anchored high the peak
-     sat flush against the top edge, and lower down the crop cut through the
-     mountain mass. Here nothing reads as cut, and the tone runs dark at the
-     top to mist at the bottom, which is where the title sits. */
-  object-position: center 62%;
+  /* The scrim covers the lower half, so what the reader actually sees of the
+     painting is the top of the band: this holds the summit and Jeong Seon's
+     inscription there, with the mist falling to where the title sits. Further
+     down (62%) showed only mid-ridges, which read as busy and had no subject;
+     further up cut through the mountain mass. */
+  object-position: center 20%;
 }
 
 .hero-overlay {
@@ -111,15 +115,20 @@ html[data-lang="en"] .i18n-ko { display: none; }
 /* Inner pages get a shallower band, but the name, mark and tagline stay the
    size they are on the home page. Resizing those too made the whole masthead
    appear to zoom on every navigation, which is what read as jarring; only the
-   depth of the painting changes now. */
+   depth of the painting changes now.
+
+   Kept close to the front page's depth: at 220px against 360px the painting
+   visibly jumped on every navigation, and since the crop is a percentage the
+   two pages also showed different bands of it. 50px apart reads as the same
+   masthead, slightly deeper on the front page. */
 .site-header--inner .hero-img {
-  height: 220px;
+  height: 250px;
   min-height: 0;
-  max-height: 220px;
+  max-height: 250px;
 }
 
 @media (max-width: 640px) {
-  .site-header--inner .hero-img { height: 150px; max-height: 150px; }
+  .site-header--inner .hero-img { height: 180px; max-height: 180px; }
 }
 
 .brand {
@@ -144,7 +153,7 @@ html[data-lang="en"] .i18n-ko { display: none; }
 }
 
 @media (max-width: 640px) {
-  .hero-img { height: 32vh; min-height: 220px; }
+  .hero-img { height: 30vh; min-height: 230px; max-height: 230px; }
   .brand { gap: 0.6rem; }
   .site-tagline { font-size: 0.85rem; }
 }
