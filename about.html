@@ -45,7 +45,7 @@ permalink: /about/
         </a>
       </dd>
       <dt><span class="i18n-ko">대표 연락처</span><span class="i18n-en">Contact</span></dt>
-      <dd><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></dd>
+      <dd><a class="byline-email" href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></dd>
     </dl>
     {% if leader_photo %}
       <a href="{{ '/people/' | relative_url }}#{{ leader_anchor }}">

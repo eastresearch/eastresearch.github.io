@@ -359,6 +359,12 @@ html[data-lang="en"] .i18n-ko { display: none; }
   font-size: 1.02rem;
 }
 
+/* the contact address is pure Latin script, same as the leader's English
+   name beside it — match that font instead of falling back to the sans body */
+.byline-email {
+  font-family: var(--font-serif);
+}
+
 /* margin links: programs and the foundation, one short note each */
 .lineage-item { margin-bottom: 1.5rem; }
 .lineage-item:last-child { margin-bottom: 0; }
