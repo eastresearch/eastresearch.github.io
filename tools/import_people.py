@@ -161,6 +161,8 @@ OVERRIDES = {
     ("이나현", "field_en"): "Political Science & International Relations",
     # supplied after the survey closed
     ("이용우", "link"): "https://www.linkedin.com/in/yongwoo-yi-331653381/",
+    # her own site rather than the LinkedIn profile given on the form
+    ("조민경", "link"): "https://minkyung.me",
 }
 
 # The site is written in American spelling, but answers arrive in both. Listed
