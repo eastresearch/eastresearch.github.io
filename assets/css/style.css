@@ -360,9 +360,11 @@ html[data-lang="en"] .i18n-ko { display: none; }
 }
 
 /* the contact address is pure Latin script, same as the leader's English
-   name beside it — match that font instead of falling back to the sans body */
+   name beside it — match that font instead of falling back to the sans body.
+   Smaller than the name: it's supporting information, not the signature. */
 .byline-email {
   font-family: var(--font-serif);
+  font-size: 0.9rem;
 }
 
 /* margin links: programs and the foundation, one short note each */
