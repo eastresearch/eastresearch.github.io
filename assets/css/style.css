@@ -79,19 +79,16 @@ html[data-lang="en"] .i18n-ko { display: none; }
 .hero-img {
   display: block;
   width: 100%;
-  /* Held to a narrow range on purpose: the depth is what differs between the
-     front page and the rest, and a wide range made that difference swing with
-     the window height as well as with the page. */
-  height: 30vh;
-  min-height: 270px;
-  max-height: 320px;
+  height: 34vh;
+  min-height: 240px;
+  max-height: 360px;
   object-fit: cover;
-  /* The scrim covers the lower half, so what the reader actually sees of the
-     painting is the top of the band. Anchored to the top it holds the whole
-     summit with sky above it, and Jeong Seon's inscription 仁王霽色 and seal
-     uncut at the right; the mist falls to where the title sits. Lower crops
-     cut the inscription off and left only mid-ridges, with no subject. */
-  object-position: center top;
+  /* A band of ridges rather than the summit: the summit sits in the top fifth
+     of the painting and is taller than this band, so any crop holding it whole
+     loses the mist the title sits on. Raised from 62% to 45%: the same kind of
+     view, with more of the rock face and Jeong Seon's seal in frame.
+     Lower values climb further; 0 is the summit flush against the top edge. */
+  object-position: center 45%;
 }
 
 .hero-overlay {
@@ -99,11 +96,7 @@ html[data-lang="en"] .i18n-ko { display: none; }
   inset: 0;
   display: flex;
   align-items: flex-end;
-  /* Lifted off the painting: the summit occupies most of the band's height, so
-     at 0.55 halfway up its lower two thirds sank into the navy and the peak
-     stopped reading as a peak. Dark enough at the foot to carry the title,
-     clear by 70%. */
-  background: linear-gradient(to top, rgba(33, 35, 79, 0.90) 0%, rgba(33, 35, 79, 0.42) 38%, rgba(33, 35, 79, 0) 70%);
+  background: linear-gradient(to top, rgba(33, 35, 79, 0.92) 0%, rgba(33, 35, 79, 0.55) 40%, rgba(33, 35, 79, 0) 78%);
 }
 
 .hero-inner {
@@ -121,18 +114,17 @@ html[data-lang="en"] .i18n-ko { display: none; }
    appear to zoom on every navigation, which is what read as jarring; only the
    depth of the painting changes now.
 
-   Kept close to the front page's depth: at 220px against 360px the painting
-   visibly jumped on every navigation, and since the crop is a percentage the
-   two pages also showed different bands of it. 50px apart reads as the same
-   masthead, slightly deeper on the front page. */
+   280 rather than 220: at 220 the band was a strip with the title pressed
+   against it, which read as cramped on the pages people actually spend time
+   on. Still clearly shallower than the front page's 360. */
 .site-header--inner .hero-img {
-  height: 250px;
+  height: 280px;
   min-height: 0;
-  max-height: 250px;
+  max-height: 280px;
 }
 
 @media (max-width: 640px) {
-  .site-header--inner .hero-img { height: 180px; max-height: 180px; }
+  .site-header--inner .hero-img { height: 190px; max-height: 190px; }
 }
 
 .brand {
@@ -157,7 +149,7 @@ html[data-lang="en"] .i18n-ko { display: none; }
 }
 
 @media (max-width: 640px) {
-  .hero-img { height: 30vh; min-height: 230px; max-height: 230px; }
+  .hero-img { height: 32vh; min-height: 220px; }
   .brand { gap: 0.6rem; }
   .site-tagline { font-size: 0.85rem; }
 }
