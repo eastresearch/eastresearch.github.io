@@ -99,7 +99,11 @@ html[data-lang="en"] .i18n-ko { display: none; }
   inset: 0;
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(to top, rgba(33, 35, 79, 0.92) 0%, rgba(33, 35, 79, 0.55) 40%, rgba(33, 35, 79, 0) 78%);
+  /* Lifted off the painting: the summit occupies most of the band's height, so
+     at 0.55 halfway up its lower two thirds sank into the navy and the peak
+     stopped reading as a peak. Dark enough at the foot to carry the title,
+     clear by 70%. */
+  background: linear-gradient(to top, rgba(33, 35, 79, 0.90) 0%, rgba(33, 35, 79, 0.42) 38%, rgba(33, 35, 79, 0) 70%);
 }
 
 .hero-inner {
