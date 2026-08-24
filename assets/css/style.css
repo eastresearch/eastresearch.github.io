@@ -87,11 +87,11 @@ html[data-lang="en"] .i18n-ko { display: none; }
   max-height: 320px;
   object-fit: cover;
   /* The scrim covers the lower half, so what the reader actually sees of the
-     painting is the top of the band: this holds the summit and Jeong Seon's
-     inscription there, with the mist falling to where the title sits. Further
-     down (62%) showed only mid-ridges, which read as busy and had no subject;
-     further up cut through the mountain mass. */
-  object-position: center 20%;
+     painting is the top of the band. Anchored to the top it holds the whole
+     summit with sky above it, and Jeong Seon's inscription 仁王霽色 and seal
+     uncut at the right; the mist falls to where the title sits. Lower crops
+     cut the inscription off and left only mid-ridges, with no subject. */
+  object-position: center top;
 }
 
 .hero-overlay {
