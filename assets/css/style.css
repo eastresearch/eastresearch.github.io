@@ -810,6 +810,22 @@ summary.cycle-heading::before {
   object-fit: cover;
 }
 
+/* A group photograph is as wide as the table it is taken across, and the 4:3
+   frame takes its sides off -- which is exactly where the people on the ends
+   are sitting. Marked `wide` in the data, it spans the row and keeps its own
+   proportions, so nobody is cropped out. */
+.gallery-item--wide {
+  grid-column: 1 / -1;
+  /* Takes the row, but not the whole of it: run out to the full 1180 the
+     photograph stands 660px tall against a normal item's 315, and the day
+     reads as a spread rather than an entry in a gallery. */
+  max-width: 860px;
+}
+.gallery-item--wide img {
+  aspect-ratio: auto;
+  height: auto;
+}
+
 .gallery-item figcaption {
   font-size: 0.84rem;
   line-height: 1.5;

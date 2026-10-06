@@ -39,7 +39,12 @@ permalink: /gallery/
 
         <div class="gallery-grid">
           {% for shot in day.items %}
-            <figure class="gallery-item">
+            {%- comment -%}
+              A photograph marked `wide` keeps its own proportions and takes
+              the row: the uniform 4:3 frame crops the sides off a group shot,
+              which is where the people at the ends of the table are.
+            {%- endcomment -%}
+            <figure class="gallery-item{% if shot.wide %} gallery-item--wide{% endif %}">
               <img src="{{ '/assets/images/gallery/' | append: shot.image | relative_url }}"
                    alt="{{ shot.caption | default: site.title }}" loading="lazy">
               {% if shot.caption %}

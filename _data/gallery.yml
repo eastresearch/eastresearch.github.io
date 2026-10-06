@@ -21,6 +21,9 @@
   date: 2026-10-04
   event: 2차 대면 모임 · 3기 킥오프
   event_en: Second meet-up in person · Cycle 3 kickoff
+  # taken across the length of the table; the 4:3 frame cuts off the people
+  # sitting at either end
+  wide: true
 
 - image: dh2026-backdrop.jpg
   date: 2026-07-30
